@@ -21,6 +21,7 @@
 		B76799B11F82435600D297EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B76799B01F82435600D297EC /* Assets.xcassets */; };
 		B76799B41F82435600D297EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B76799B21F82435600D297EC /* LaunchScreen.storyboard */; };
 		B76799BC1F82446700D297EC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B76799BB1F82446700D297EC /* GoogleService-Info.plist */; };
+		B77748BA1F87DB6200DD4C2A /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77748B91F87DB6200DD4C2A /* DataService.swift */; };
 		FC1F51E4290E5284D06EE0EA /* Pods_mysocial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 570ADA5072B4E88201C49BF6 /* Pods_mysocial.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +45,7 @@
 		B76799B31F82435600D297EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B76799B51F82435600D297EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B76799BB1F82446700D297EC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B77748B91F87DB6200DD4C2A /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 		B76799A81F82435600D297EC /* mysocial */ = {
 			isa = PBXGroup;
 			children = (
+				B77748B81F87DB1C00DD4C2A /* Services */,
 				B721A3EB1F838B3700EDFB5A /* Util */,
 				B76799BF1F8249B800D297EC /* Model */,
 				B76799BE1F8249AD00D297EC /* View */,
@@ -128,6 +131,14 @@
 			children = (
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		B77748B81F87DB1C00DD4C2A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B77748B91F87DB6200DD4C2A /* DataService.swift */,
+			);
+			name = Services;
 			sourceTree = "<group>";
 		};
 		BEE48025BA1559767EBD3BA3 /* Pods */ = {
@@ -277,6 +288,7 @@
 				B76799AC1F82435600D297EC /* SignInVC.swift in Sources */,
 				B721A3EF1F83DAA300EDFB5A /* RoundBtn.swift in Sources */,
 				B76799AA1F82435600D297EC /* AppDelegate.swift in Sources */,
+				B77748BA1F87DB6200DD4C2A /* DataService.swift in Sources */,
 				B709864B1F854C2A001EBD98 /* FeedVC.swift in Sources */,
 				B721A3EA1F838A9200EDFB5A /* FancyView.swift in Sources */,
 				B721A3ED1F838B5900EDFB5A /* Constants.swift in Sources */,

@@ -20,6 +20,13 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.delegate = self
         tableView.dataSource = self
         
+        // Τοποθετούμε εναν observer για να παρακολουθούμε τις αλλαγες στα posts. Επίσης με αυτον τον τρόπο λαμβάνουμε τα δεδομένα της database μας.
+        
+        DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
+            
+            print(snapshot.value)
+        })
+        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

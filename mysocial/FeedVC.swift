@@ -11,17 +11,26 @@ import SwiftKeychainWrapper
 import Firebase
 
 
-class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var imageAdd: CircleView!
+    
     var posts = [Post]()
+    var imagePicker: UIImagePickerController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.delegate = self
         tableView.dataSource = self
+        
+        imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        
+        // Επιτρέπει στον χρήστη να επεξεργαστεί το περιεχόμενο της view μας.
+       // imagePicker.allowsEditing = true
         
         // Τοποθετούμε εναν observer για να παρακολουθούμε τις αλλαγες στα posts. Επίσης με αυτον τον τρόπο λαμβάνουμε τα δεδομένα της database μας.
         
@@ -76,7 +85,26 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             return PostCell()
         }
     }
-
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+            
+            imageAdd.image = image
+        } else {
+            print("Vageli: A valid image wasn't selected")
+        }
+        
+        imagePicker.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func addImageTapped(_ sender: Any) {
+        
+       present(imagePicker, animated: true, completion: nil)
+        
+    }
+    
     @IBAction func SignOutTapped(_ sender: Any) {
         
         let keychainResult = KeychainWrapper.standard.removeObject(forKey: KEY_UID)

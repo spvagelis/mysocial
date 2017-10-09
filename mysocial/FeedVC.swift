@@ -13,6 +13,8 @@ import Firebase
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
+    
+    var posts = [Post]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +25,27 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         // Τοποθετούμε εναν observer για να παρακολουθούμε τις αλλαγες στα posts. Επίσης με αυτον τον τρόπο λαμβάνουμε τα δεδομένα της database μας.
         
         DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
+        
+            if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
+                
+                for snap in snapshot {
+                    
+                    // Το snap εχει όλα τα αντικειμενα πλεον.
+                    
+                    print("SNAP: \(snap)")
+                    
+                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        
+                        let key = snap.key
+                        let post = Post(postKey: key, postData: postDict)
+                        self.posts.append(post)
+                        
+                    }
+                }
+            }
             
-            print(snapshot.value)
+            self.tableView.reloadData()
+            
         })
         
     }
@@ -36,10 +57,13 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 3
+        return posts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let post = posts[indexPath.row]
+        print("Vageli: \(post.caption)")
         
         return tableView.dequeueReusableCell(withIdentifier: "PostCell")!
     }

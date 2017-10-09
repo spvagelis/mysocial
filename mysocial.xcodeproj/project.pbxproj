@@ -13,6 +13,7 @@
 		B721A3EF1F83DAA300EDFB5A /* RoundBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = B721A3EE1F83DAA300EDFB5A /* RoundBtn.swift */; };
 		B721A3F11F83E40500EDFB5A /* FancyField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B721A3F01F83E40500EDFB5A /* FancyField.swift */; };
 		B721A3F31F83E69D00EDFB5A /* FancyBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = B721A3F21F83E69D00EDFB5A /* FancyBtn.swift */; };
+		B7307A471F8B5DFF00BFE223 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7307A461F8B5DFF00BFE223 /* Post.swift */; };
 		B745F8C11F86231B00843EC8 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B745F8C01F86231B00843EC8 /* CircleView.swift */; };
 		B745F8C31F868C3100843EC8 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B745F8C21F868C3100843EC8 /* PostCell.swift */; };
 		B76799AA1F82435600D297EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76799A91F82435600D297EC /* AppDelegate.swift */; };
@@ -35,6 +36,7 @@
 		B721A3EE1F83DAA300EDFB5A /* RoundBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundBtn.swift; sourceTree = "<group>"; };
 		B721A3F01F83E40500EDFB5A /* FancyField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FancyField.swift; sourceTree = "<group>"; };
 		B721A3F21F83E69D00EDFB5A /* FancyBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FancyBtn.swift; sourceTree = "<group>"; };
+		B7307A461F8B5DFF00BFE223 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		B745F8C01F86231B00843EC8 /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		B745F8C21F868C3100843EC8 /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		B76799A61F82435600D297EC /* mysocial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mysocial.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,6 +131,7 @@
 		B76799BF1F8249B800D297EC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B7307A461F8B5DFF00BFE223 /* Post.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 				B745F8C11F86231B00843EC8 /* CircleView.swift in Sources */,
 				B721A3F11F83E40500EDFB5A /* FancyField.swift in Sources */,
 				B76799AC1F82435600D297EC /* SignInVC.swift in Sources */,
+				B7307A471F8B5DFF00BFE223 /* Post.swift in Sources */,
 				B721A3EF1F83DAA300EDFB5A /* RoundBtn.swift in Sources */,
 				B76799AA1F82435600D297EC /* AppDelegate.swift in Sources */,
 				B77748BA1F87DB6200DD4C2A /* DataService.swift in Sources */,

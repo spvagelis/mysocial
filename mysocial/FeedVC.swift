@@ -17,9 +17,12 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     
     @IBOutlet weak var imageAdd: CircleView!
     
+    @IBOutlet weak var captionField: FancyField!
+    
     var posts = [Post]()
     var imagePicker: UIImagePickerController!
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
+    var imageSelected = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +34,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         imagePicker.delegate = self
         
         // Επιτρέπει στον χρήστη να επεξεργαστεί το περιεχόμενο της view μας.
-       // imagePicker.allowsEditing = true
+        imagePicker.allowsEditing = true
         
         // Τοποθετούμε εναν observer για να παρακολουθούμε τις αλλαγες στα posts. Επίσης με αυτον τον τρόπο λαμβάνουμε τα δεδομένα της database μας.
         
@@ -98,6 +101,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
             
             imageAdd.image = image
+            imageSelected = true
         } else {
             print("Vageli: A valid image wasn't selected")
         }
@@ -110,6 +114,45 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         
        present(imagePicker, animated: true, completion: nil)
         
+    }
+    
+    @IBAction func postBtnTapped(_ sender: Any) {
+        
+        // Τσεκάρουμε εαν υπάρχει caption
+        guard let caption = captionField.text, caption != "" else {
+            
+            print("Vageli: Caption must be entered")
+            return
+        }
+        
+        // Τσεκάρουμε εαν υπάρχει image
+        guard let img = imageAdd.image, imageSelected == true else {
+            
+            print("Vageli: An image must be selected")
+            return
+        }
+        
+        // Μετατρέπουμε την εικονα μας σε data σε μορφή jpeg. Με αυτόν τον τρόπο μπορούμε να την καταχωρήσουμε στην firebase database.
+        
+        if let imgData = UIImageJPEGRepresentation(img, 0.2) {
+            
+            // Πέρνουμε ενα μοναδικό id
+            let imgUid = NSUUID().uuidString
+            
+            // Θέτουμε την metadata σε μορφή jpeg
+            let metadata = StorageMetadata()
+            metadata.contentType = "image/jpeg"
+            
+            DataService.ds.REF_POST_IMAGES.child(imgUid).putData(imgData, metadata: metadata) { (metadata, error) in
+                if error != nil {
+                    print("Vageli: Unable to upload image to Firebase storage")
+                } else {
+                    print("Vageli: Successfully upload image to Firebase storage")
+                    let downloadURL = metadata?.downloadURL()?.absoluteString
+                }
+                
+            }
+        }
     }
     
     @IBAction func SignOutTapped(_ sender: Any) {

@@ -148,11 +148,34 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
                     print("Vageli: Unable to upload image to Firebase storage")
                 } else {
                     print("Vageli: Successfully upload image to Firebase storage")
-                    let downloadURL = metadata?.downloadURL()?.absoluteString
+                    if let downloadURL = metadata?.downloadURL()?.absoluteString {
+                    self.postToFirebase(imgUrl: downloadURL)
+                    }
                 }
                 
             }
         }
+    }
+    
+    func postToFirebase(imgUrl: String) {
+        
+        let post: Dictionary<String, Any> = [
+        "caption": captionField.text!,
+        "imageUrl": imgUrl,
+        "likes": 0
+        ]
+        
+        let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
+        firebasePost.setValue(post)
+        
+        // Θέτουμε στις αρχικες καταστάσεις τα captionField, image
+        
+        captionField.text = ""
+        imageSelected = false
+        imageAdd.image = UIImage(named: "add-image")
+        
+        tableView.reloadData()
+        
     }
     
     @IBAction func SignOutTapped(_ sender: Any) {
